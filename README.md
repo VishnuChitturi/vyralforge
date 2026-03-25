@@ -1,10 +1,8 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
-
 # VyralForge
 
-VyralForge is a lightweight React + Vite app that transforms a single piece of source content (blog text, notes, or idea) into platform-ready social copy and short-form video scripts using Google GenAI (Gemini).
+> Live demo: [Open the app in your browser](https://your-deployed-app.example) — replace the URL with your deployment. For local development use: `http://localhost:3000`.
+
+VyralForge is a lightweight React + Vite app that transforms a single piece of source content (blog text, notes, or idea) into platform-ready social copy and short-form video scripts using a GenAI model.
 
 The app focuses on producing professional, high-engagement outputs for LinkedIn, Twitter threads, Instagram captions, YouTube scripts, hooks, and short-form video outlines — with options to adjust tone, length, and a "viral boost" mode.
 
@@ -16,7 +14,7 @@ The app focuses on producing professional, high-engagement outputs for LinkedIn,
 - Tone control (Professional, Casual, Viral, Storytelling) and length control (Short, Medium, Long).
 - Viral boost toggle to emphasize hooks and psychological engagement triggers.
 - Live preview while composing and copy-to-clipboard for quick export.
-- Type-safe schema enforcement for Gemini JSON responses.
+- Type-safe schema enforcement for structured JSON responses from the model.
 
 ---
 
@@ -26,7 +24,7 @@ The app focuses on producing professional, high-engagement outputs for LinkedIn,
 - Vite (dev server and build)
 - TypeScript
 - TailwindCSS (styling)
-- @google/genai (Gemini client)
+- GenAI client (e.g., provider SDK)
 - motion (animation primitives)
 
 ---
@@ -48,10 +46,10 @@ npm install
 
 Configure environment
 
-Create a file named `.env` (or `.env.local`) in the project root with your Gemini API key:
+Create a file named `.env` (or `.env.local`) in the project root with your model API key:
 
 ```env
-VITE_GEMINI_API_KEY=your_gemini_api_key_here
+VITE_GEMINI_API_KEY=your_api_key_here
 ```
 
 Notes:
@@ -79,22 +77,22 @@ Build and preview
 
 - `src/App.tsx` — main UI, pages, and routing
 - `src/main.tsx` — app bootstrap
-- `src/services/gemini.ts` — Gemini client wrapper and generation logic
+- `src/services/gemini.ts` — model client wrapper and generation logic
 - `index.html`, `vite.config.ts`, `tsconfig.json` — build & config
 - `package.json` — scripts and dependencies
 
 ---
 
-## Gemini integration details
+## Model integration details
 
-- The core generation logic lives in `src/services/gemini.ts` and uses `@google/genai` to call the `gemini-3-flash-preview` model (configured in code).
+- The core generation logic lives in `src/services/gemini.ts` and uses an LLM/GenAI client to call the configured model (the code defaults to `gemini-3-flash-preview`).
 - `generateRepurposedContent` submits a prompt and a strict JSON schema to the model. The function expects a validated JSON object matching the `RepurposedContent` TypeScript interface.
 - If the model returns malformed JSON or fails schema validation, the function may throw an error — check the console or server logs for details.
 
 Tips
 
 - If you need to swap models or tweak prompts, edit `src/services/gemini.ts`.
-- For local development without an API key, guard calls to Gemini or mock `generateRepurposedContent`.
+- For local development without an API key, guard calls to the model or mock `generateRepurposedContent`.
 
 ---
 
@@ -111,7 +109,7 @@ Tips
 
 - Generation errors:
   - Confirm your `VITE_GEMINI_API_KEY` is set and valid.
-  - Confirm the model name in `gemini.ts` is accessible to your key.
+  - Confirm the model name in `src/services/gemini.ts` is accessible to your key.
   - Inspect the browser console for network or runtime errors.
 
 - Dev server problems:
