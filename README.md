@@ -1,7 +1,8 @@
 # VyralForge
 
-> Live demo: [Open the app in your browser](https://vyralforge.netlify.app/)
-> For local development use: `http://localhost:3000`.
+Live demo: [Open the app in your browser](https://vyralforge.netlify.app/)
+
+For local development use: `http://localhost:3000`.
 
 VyralForge is a lightweight React + Vite app that transforms a single piece of source content (blog text, notes, or idea) into platform-ready social copy and short-form video scripts using a GenAI model.
 
