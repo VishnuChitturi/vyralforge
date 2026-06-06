@@ -130,12 +130,6 @@ Contributions are welcome. Suggested workflow:
 
 ---
 
-## License
-
-This repository does not include a license file. Add one if you intend to publish or share the project publicly.
-
----
-
 ## Acknowledgements
 
 Built by Vishnu. UI inspired by modern motion-driven dashboards and platform-first content workflows.
